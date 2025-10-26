@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>カウントダウンタイマー</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="timer-display">10:00</div>
+    <div id="pause-icon"></div>
+    <svg id="progress-ring">
+        <path id="path-counter-clockwise" class="progress-path" d="M960,10 L10,10 L10,1070 L1910,1070 L1910,10 L960,10" />
+        <g id="overtime-paths">
+            <path id="ot-path-0" class="progress-path ot-path" />
+            <path id="ot-path-1" class="progress-path ot-path" />
+            <path id="ot-path-2" class="progress-path ot-path" />
+            <path id="ot-path-3" class="progress-path ot-path" />
+            <path id="ot-path-4" class="progress-path ot-path" />
+        </g>
+    </svg>
+    <script src="script.js"></script>
+</body>
+</html>

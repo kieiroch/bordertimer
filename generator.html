@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>タイマーURLジェネレーター</title>
+    <style>
+        body { font-family: sans-serif; display: flex; height: 100vh; margin: 0; }
+        #controls { width: 400px; padding: 20px; overflow-y: auto; border-right: 1px solid #ccc; }
+        #preview { flex-grow: 1; }
+        iframe { width: 100%; height: 100%; border: none; }
+        fieldset { border: 1px solid #ccc; border-radius: 5px; margin-bottom: 15px; }
+        legend { font-weight: bold; }
+        label { display: block; margin-bottom: 5px; }
+        input, select { width: 100%; box-sizing: border-box; margin-bottom: 10px; }
+        #generated-url { width: 100%; box-sizing: border-box; padding: 10px; background: #eee; border: 1px solid #ccc; border-radius: 5px; font-family: monospace; word-wrap: break-word; }
+    </style>
+</head>
+<body>
+
+    <div id="controls">
+        <h2>タイマーURLジェネレーター</h2>
+        <form id="generator-form">
+
+            <fieldset>
+                <legend>基本設定</legend>
+                <label for="minutes" title="タイマーの初期値を分単位で設定します。">時間 (分)</label>
+                <input type="number" id="minutes" value="10">
+                <label for="thickness" title="外周のバーの太さをピクセル単位で指定します。">バーの太さ (px)</label>
+                <input type="number" id="thickness" value="20">
+            </fieldset>
+
+            <fieldset>
+                <legend>バーの色</legend>
+                <label for="barcolor" title="カウントダウン中のバーの色を設定します。">カウントダウン色</label>
+                <input type="color" id="barcolor" value="#00ff00">
+                <label for="overtimecolor" title="時間超過後のバーの色を設定します。">超過時間色</label>
+                <input type="color" id="overtimecolor" value="#ff0000">
+            </fieldset>
+
+            <fieldset>
+                <legend>数字タイマー</legend>
+                <input type="checkbox" id="hidetimer" style="width: auto; margin-right: 5px;"><label for="hidetimer" title="チェックすると、中央の数字タイマーが表示されなくなります。">数字タイマーを非表示</label>
+                <br><br>
+                <label for="fontsize" title="中央の数字タイマーの文字サイズを指定します。`10vw`や`100px`のようにCSSの単位で指定できます。">フォントサイズ (例: 10vw)</label>
+                <input type="text" id="fontsize" value="10vw">
+                <label for="color" title="中央の数字タイマーの文字色を設定します。">フォント色</label>
+                <input type="color" id="color" value="#ffffff">
+                <label for="top" title="数字タイマーの中心の、画面の上端からの位置。`50%`や`100px`のようにCSSの単位で指定できます。">上からの位置 (例: 50%)</label>
+                <input type="text" id="top" value="50%">
+                <label for="left" title="数字タイマーの中心の、画面の左端からの位置。`50%`や`100px`のようにCSSの単位で指定できます。">左からの位置 (例: 50%)</label>
+                <input type="text" id="left" value="50%">
+            </fieldset>
+
+            <fieldset>
+                <legend>一時停止アイコン</legend>
+                <input type="checkbox" id="hidepause" style="width: auto; margin-right: 5px;"><label for="hidepause" title="チェックすると、一時停止中のアイコンが表示されなくなります。">一時停止アイコンを非表示</label>
+                <br><br>
+                <label for="pausesize" title="一時停止アイコンの幅を指定します。高さは自動で調整されます。`8vw`や`80px`のようにCSSの単位で指定できます。">サイズ (例: 8vw)</label>
+                <input type="text" id="pausesize" value="8vw">
+                <label for="pausecolor" title="一時停止アイコンの色を設定します。">色</label>
+                <input type="color" id="pausecolor" value="#ffffff">
+                <label for="pausetop" title="一時停止アイコンの中心の、画面の上端からの位置。`50%`や`100px`のようにCSSの単位で指定できます。">上からの位置 (例: 50%)</label>
+                <input type="text" id="pausetop" value="50%">
+                <label for="pauseleft" title="一時停止アイコンの中心の、画面の左端からの位置。`50%`や`100px`のようにCSSの単位で指定できます。">左からの位置 (例: 50%)</label>
+                <input type="text" id="pauseleft" value="50%">
+            </fieldset>
+
+        </form>
+
+        <h3>生成されたURL</h3>
+        <p>下のURLをコピーしてOBSのブラウザソースに設定してください。</p>
+        <div id="generated-url"></div>
+    </div>
+
+    <div id="preview">
+        <iframe id="preview-frame"></iframe>
+    </div>
+
+    <script src="generator.js"></script>
+
+</body>
+</html>
